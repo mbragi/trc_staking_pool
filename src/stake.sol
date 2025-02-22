@@ -4,9 +4,9 @@ pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-abstract contract StakingPool is Ownable {
+contract StakingPool is Ownable {
     IERC20 public stakingToken;
-    uint256 public constant REWARD = 2; 
+    uint256 public constant REWARD = 2;
     uint256 public constant STAKE_DURATION = 2 minutes;
 
     struct StakeInfo {
@@ -19,7 +19,7 @@ abstract contract StakingPool is Ownable {
     event Staked(address indexed user, uint256 amount);
     event Withdrawn(address indexed user, uint256 amount, uint256 reward);
 
-    constructor(address _stakingToken) {
+    constructor(address _stakingToken) Ownable(msg.sender) {
         stakingToken = IERC20(_stakingToken);
     }
 
