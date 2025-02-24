@@ -22,7 +22,7 @@ contract StakingPoolTest is Test {
     function setUp() public {
         stakingToken = new ERC20Mock("Trash Coin", "TRC");
         stakingToken.mint(address(this), 1000 * 10**18);
-        stakingPool = new StakingPool(IERC20(address(stakingToken)));
+        stakingPool = new StakingPool(address(stakingToken));
 
         stakingToken.mint(user, 500 * 10**18);
         vm.startPrank(user);
